@@ -25,15 +25,16 @@ class FlutterDemoState extends State {
     setState(() {
       counter++;
     });
-    print("posting");
-    String lUrl = 'http://localhost:9999';
+    String lUrl = 'https://httpbin.org/post';
+    print("Posting to ${lUrl}");
     Map lMap = {"Foo1": "Bar1", "Foo2": "Bar2"};
     String lData = JSON.encode(lMap);
 
     Map lHeaders = {"Content-type": "application/json", "Accept": "application/json"};
 
     http.post(lUrl, body: lData, headers: lHeaders).then((http.Response lResp) {
-      print(lResp);
+      print("Response:");
+      print(lResp.body);
     });
   }
 
